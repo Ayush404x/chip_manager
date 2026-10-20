@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --ring: 16 185 129;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-charcoal-950 font-sans text-slate-100 antialiased;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(1200px 800px at 15% -10%, rgba(16, 185, 129, 0.12), transparent 55%),
+    radial-gradient(900px 700px at 90% 10%, rgba(231, 191, 106, 0.06), transparent 50%),
+    linear-gradient(180deg, #070a09 0%, #080d0b 45%, #050807 100%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgba(52, 211, 153, 0.3);
+  color: #ecfdf5;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a3935 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #2a3935;
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(52, 211, 153, 0.75);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .surface {
+    @apply rounded-2xl border border-white/[0.07] bg-charcoal-850/80 shadow-panel backdrop-blur-xl;
+  }
+
+  .surface-raised {
+    @apply rounded-2xl border border-white/[0.09] bg-gradient-to-b from-charcoal-800 to-charcoal-850 shadow-panel;
+  }
+
+  .hairline {
+    @apply border-white/[0.07];
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 20%, transparent 80%);
+  }
+
+  .felt-table {
+    background:
+      radial-gradient(ellipse 62% 58% at 50% 45%, rgba(45, 212, 191, 0.14), transparent 62%),
+      radial-gradient(ellipse 95% 80% at 50% 50%, #12513f 0%, #0b3a2d 48%, #07241c 100%);
+    box-shadow:
+      inset 0 0 80px rgba(0, 0, 0, 0.65),
+      inset 0 0 0 2px rgba(231, 191, 106, 0.18),
+      inset 0 0 0 14px rgba(4, 16, 12, 0.55),
+      0 40px 90px -40px rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(231, 191, 106, 0.16);
+  }
+
+  .felt-table::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/%3E%3C/svg%3E");
+    opacity: 0.16;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+  }
+
+  .seat-active {
+    @apply border-emerald-400/70 bg-charcoal-800;
+    box-shadow:
+      0 0 0 1px rgba(52, 211, 153, 0.35),
+      0 0 32px -8px rgba(52, 211, 153, 0.55);
+  }
+
+  .chip-value {
+    @apply font-mono tabular-nums tracking-tight;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .text-gradient-emerald {
+    @apply bg-gradient-to-r from-emerald-200 via-emerald-300 to-teal-400 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-amber-100 via-chip-gold to-amber-500 bg-clip-text text-transparent;
+  }
+
+  .divider {
+    @apply h-px w-full bg-white/[0.06];
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-lg bg-white/[0.04];
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 100%
+    );
+    background-size: 400px 100%;
+    background-repeat: no-repeat;
+    animation: shimmer 1.6s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "chiproom-root",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build --prefix shared && concurrently -k -n server,client -c green,cyan \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "build": "npm run build --prefix shared && npm run build --prefix client && npm run build --prefix server",
+    "start": "npm run start --prefix server",
+    "test": "npm run test --prefix server",
+    "test:watch": "npm run test:watch --prefix server",
+    "typecheck": "npm run typecheck --prefix shared && npm run typecheck --prefix server && npm run typecheck --prefix client",
+    "lint": "eslint .",
+    "db:migrate": "npm run db:migrate --prefix server",
+    "db:generate": "npm run db:generate --prefix server"
+  },
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "concurrently": "^10.0.6",
+    "drizzle-orm": "^0.44.5",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.13.0",
+    "typescript-eslint": "^8.72.0"
+  }
+}
